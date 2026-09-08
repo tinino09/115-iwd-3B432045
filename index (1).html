@@ -1,0 +1,495 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>黃婷鈺｜個人介紹</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,400;8..60,600;8..60,700&family=Noto+Serif+TC:wght@500;700&family=Work+Sans:wght@400;500;600&family=Noto+Sans+TC:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink: #1F2933;
+    --paper: #FFFF99;
+    --paper-deep: #E4E1D5;
+    --card: #FAF9F4;
+    --gold: #B3862C;
+    --maroon: #7A2E2E;
+    --line: #D8D4C6;
+    --muted: #6B675C;
+  }
+
+  *{ box-sizing: border-box; }
+
+  html,body{
+    margin:0;
+    padding:0;
+    background: var(--paper);
+    color: var(--ink);
+    font-family: "Work Sans","Noto Sans TC",sans-serif;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  body{
+    display:flex;
+    flex-direction:column;
+    min-height:100vh;
+  }
+
+  .serif{
+    font-family: "Source Serif 4","Noto Serif TC",serif;
+  }
+
+  a{ color: inherit; }
+
+  :focus-visible{
+    outline: 2px solid var(--maroon);
+    outline-offset: 3px;
+  }
+
+  /* ---------- 頂部 ---------- */
+  header.site-head{
+    background: var(--paper);
+    border-bottom: 1px solid var(--line);
+    padding: 40px clamp(20px, 6vw, 72px) 0;
+  }
+
+  .hero-deco{
+    display:flex;
+    justify-content:flex-end;
+    margin-bottom: 4px;
+  }
+
+  .cat-scene{
+    width: 132px;
+    height: 84px;
+    display:block;
+  }
+
+  .cat-scene .cat-rig{
+    animation: cat-bob 2.6s ease-in-out infinite;
+    transform-origin: 50% 100%;
+  }
+
+  .cat-scene .cat-paw{
+    transform-origin: 78px 78px;
+    animation: paw-swipe 2.6s ease-in-out infinite;
+  }
+
+  .cat-scene .yarn-rig{
+    transform-origin: 42px 92px;
+    animation: yarn-wobble 2.6s ease-in-out infinite;
+  }
+
+  .cat-scene .yarn-thread{
+    stroke-dasharray: 3 4;
+    animation: thread-drift 2.6s linear infinite;
+  }
+
+  @keyframes cat-bob{
+    0%, 100%{ transform: translateY(0); }
+    50%{ transform: translateY(-2px); }
+  }
+
+  @keyframes paw-swipe{
+    0%, 100%{ transform: rotate(0deg); }
+    18%{ transform: rotate(-32deg); }
+    34%{ transform: rotate(6deg); }
+    50%{ transform: rotate(0deg); }
+  }
+
+  @keyframes yarn-wobble{
+    0%, 100%{ transform: translateX(0) rotate(0deg); }
+    28%{ transform: translateX(-7px) rotate(-18deg); }
+    55%{ transform: translateX(3px) rotate(8deg); }
+    75%{ transform: translateX(0) rotate(0deg); }
+  }
+
+  @keyframes thread-drift{
+    to{ stroke-dashoffset: -14; }
+  }
+
+  @media (prefers-reduced-motion: reduce){
+    .cat-scene .cat-rig,
+    .cat-scene .cat-paw,
+    .cat-scene .yarn-rig,
+    .cat-scene .yarn-thread{
+      animation: none;
+    }
+  }
+
+  @media (max-width: 640px){
+    .cat-scene{ width: 100px; height: 64px; }
+  }
+
+  .head-row{
+    display:flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    flex-wrap: wrap;
+    gap: 24px;
+    padding-bottom: 28px;
+  }
+
+  .head-name{
+    font-size: clamp(2.1rem, 4.5vw, 3.1rem);
+    font-weight: 600;
+    line-height: 1.15;
+    margin: 0 0 8px;
+    letter-spacing: 0.01em;
+  }
+
+  .head-role{
+    margin:0;
+    color: var(--muted);
+    font-size: 1rem;
+    letter-spacing: 0.02em;
+  }
+
+  nav.tabs{
+    display:flex;
+    gap: clamp(20px, 3vw, 40px);
+  }
+
+  .tab-btn{
+    background:none;
+    border:none;
+    padding: 6px 2px 16px;
+    font-family: inherit;
+    font-size: 1rem;
+    font-weight: 500;
+    color: var(--muted);
+    cursor:pointer;
+    position:relative;
+    border-bottom: 2px solid transparent;
+    transition: color .15s ease, border-color .15s ease;
+  }
+
+  .tab-btn:hover{ color: var(--ink); }
+
+  .tab-btn[aria-selected="true"]{
+    color: var(--ink);
+    border-bottom-color: var(--gold);
+  }
+
+  /* ---------- 主體 ---------- */
+  main{
+    flex:1;
+    padding: 56px clamp(20px, 6vw, 72px);
+  }
+
+  .body-grid{
+    display:grid;
+    grid-template-columns: 300px 1fr;
+    gap: clamp(32px, 5vw, 64px);
+    align-items: start;
+    max-width: 1080px;
+    margin: 0 auto;
+  }
+
+  .photo-block{
+    position:relative;
+    background: var(--card);
+    border: 1px solid var(--line);
+    padding: 18px 18px 26px;
+  }
+
+  .photo-frame{
+    aspect-ratio: 1 / 1;
+    border-radius: 50%;
+    background: #FFFF99;
+    border: 1px solid var(--line);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    color: var(--muted);
+    font-size: 0.85rem;
+    text-align:center;
+    padding: 16px;
+    overflow: hidden;
+    margin: 0 auto;
+    max-width: 240px;
+  }
+
+  .photo-frame img{
+    width:100%;
+    height:100%;
+    object-fit: cover;
+    display:block;
+    border-radius: 50%;
+  }
+
+  .photo-caption{
+    display:flex;
+    justify-content: space-between;
+    align-items: baseline;
+    margin-top: 14px;
+    padding-top: 14px;
+    border-top: 1px solid var(--line);
+    font-size: 0.82rem;
+    color: var(--muted);
+  }
+
+  .photo-caption strong{
+    color: var(--ink);
+    font-weight: 500;
+  }
+
+  .content-panel{
+    min-height: 340px;
+  }
+
+  .panel{ display:none; }
+  .panel.is-active{ display:block; }
+
+  .panel h2{
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin: 0 0 20px;
+  }
+
+  .panel p{
+    font-size: 1.02rem;
+    line-height: 1.85;
+    max-width: 62ch;
+    margin: 0 0 18px;
+    color: #33393f;
+  }
+
+  .trait-row{
+    display:flex;
+    flex-wrap:wrap;
+    gap: 10px;
+    margin: 4px 0 26px;
+  }
+
+  .trait-chip{
+    border: 1px solid var(--line);
+    background: var(--card);
+    padding: 6px 14px;
+    font-size: 0.85rem;
+    color: var(--ink);
+  }
+
+  .achv-list{
+    list-style:none;
+    margin:0;
+    padding:0;
+    border-top: 1px solid var(--line);
+  }
+
+  .achv-item{
+    display:grid;
+    grid-template-columns: 88px 1fr;
+    gap: 20px;
+    padding: 18px 0;
+    border-bottom: 1px solid var(--line);
+  }
+
+  .achv-year{
+    color: var(--gold);
+    font-weight: 600;
+    font-size: 0.92rem;
+    padding-top: 2px;
+  }
+
+  .achv-title{
+    margin: 0 0 4px;
+    font-weight: 500;
+    font-size: 1.02rem;
+  }
+
+  .achv-desc{
+    margin:0;
+    color: var(--muted);
+    font-size: 0.92rem;
+    line-height: 1.6;
+    max-width: 58ch;
+  }
+
+  /* ---------- 底部 ---------- */
+  footer.site-foot{
+    background: #C6A57B;
+    color: #2A2119;
+    padding: 40px clamp(20px, 6vw, 72px);
+  }
+
+  .foot-grid{
+    max-width: 1080px;
+    margin: 0 auto;
+    display:flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 24px;
+    flex-wrap: wrap;
+  }
+
+  .foot-desc{
+    max-width: 46ch;
+    font-size: 0.92rem;
+    line-height: 1.7;
+    color: #45392C;
+    margin:0;
+  }
+
+  .foot-contact{
+    display:flex;
+    flex-direction: column;
+    gap: 6px;
+    font-size: 0.92rem;
+  }
+
+  .foot-contact a{
+    text-decoration: none;
+    border-bottom: 1px solid rgba(42,33,25,0.35);
+  }
+
+  .foot-contact a:hover{
+    border-bottom-color: var(--maroon);
+  }
+
+  .foot-label{
+    color: #5C4B3A;
+    font-size: 0.78rem;
+    letter-spacing: 0.02em;
+    margin-bottom: 2px;
+  }
+
+  @media (max-width: 720px){
+    .body-grid{ grid-template-columns: 1fr; }
+    .photo-block{ max-width: 280px; }
+    .achv-item{ grid-template-columns: 1fr; gap: 4px; }
+    .foot-grid{ flex-direction: column; }
+  }
+</style>
+</head>
+<body>
+
+  <header class="site-head">
+    <div class="hero-deco" aria-hidden="true">
+      <svg class="cat-scene" viewBox="0 0 150 96" xmlns="http://www.w3.org/2000/svg">
+        <g class="yarn-rig">
+          <circle cx="42" cy="80" r="15" fill="var(--gold)"/>
+          <path d="M28,80 A14,14 0 0 1 56,80" stroke="#8A6A20" stroke-width="1.4" fill="none" opacity="0.55"/>
+          <path d="M31,70 A14,14 0 0 1 53,90" stroke="#8A6A20" stroke-width="1.4" fill="none" opacity="0.55"/>
+          <path d="M31,90 A14,14 0 0 1 53,70" stroke="#8A6A20" stroke-width="1.4" fill="none" opacity="0.55"/>
+        </g>
+        <path class="yarn-thread" d="M54,76 Q66,62 76,72" stroke="var(--gold)" stroke-width="2" fill="none" stroke-linecap="round"/>
+
+        <g class="cat-rig">
+          <path d="M104,84 C122,80 126,58 112,48" stroke="var(--ink)" stroke-width="6" fill="none" stroke-linecap="round"/>
+          <ellipse cx="84" cy="72" rx="26" ry="19" fill="var(--ink)"/>
+          <circle cx="72" cy="40" r="15" fill="var(--ink)"/>
+          <path d="M60,32 L64,16 L72,30 Z" fill="var(--ink)"/>
+          <path d="M74,28 L82,14 L88,30 Z" fill="var(--ink)"/>
+          <path d="M64,28 L66,20 L70,27 Z" fill="var(--maroon)"/>
+          <circle cx="67" cy="41" r="1.6" fill="var(--paper)"/>
+          <g class="cat-paw">
+            <ellipse cx="78" cy="78" rx="6.5" ry="8.5" fill="var(--ink)"/>
+          </g>
+        </g>
+      </svg>
+    </div>
+    <div class="head-row">
+      <div>
+        <h1 class="head-name serif">黃婷鈺</h1>
+        <p class="head-role">國立勤益科技大學．資訊管理系二年級</p>
+      </div>
+      <nav class="tabs" role="tablist" aria-label="頁面內容切換">
+        <button class="tab-btn" role="tab" id="tab-about" aria-selected="true" aria-controls="panel-about">自我介紹</button>
+        <button class="tab-btn" role="tab" id="tab-achv" aria-selected="false" aria-controls="panel-achv">在校成就</button>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <div class="body-grid">
+
+      <div class="photo-block">
+        <div class="photo-frame">
+
+         <img src="photo.jpg" alt="黃婷鈺的大頭照">
+        </div>
+        <div class="photo-caption">
+          <span>學號 B10707022</span>
+          <strong>資二甲</strong>
+        </div>
+      </div>
+
+      <div class="content-panel">
+
+        <section class="panel is-active" id="panel-about" role="tabpanel" aria-labelledby="tab-about">
+          <h2 class="serif">關於我</h2>
+          <div class="trait-row">
+            <span class="trait-chip">邏輯思考</span>
+            <span class="trait-chip">團隊合作</span>
+            <span class="trait-chip">持續學習</span>
+            <span class="trait-chip">喜歡動手做</span>
+          </div>
+          <p>
+            我是黃婷鈺，目前就讀資訊管理系二年級，對後端系統與資料結構特別感興趣，習慣把抽象的問題拆解成可以逐步驗證的小步驟。平常喜歡透過實作專案來學習新技術，也享受和同學一起除錯、互相檢視程式碼的過程。
+          </p>
+          <p>
+            課餘時間我會餐與UIUX的線上課程，學習相關技能；在暑假期間也會參加暑期職場體驗計畫，擔任企劃宣傳的職位，利用在校所學幫助企業宣傳，希望在畢業前累積足夠的實戰經驗，未來能投入後端工程或系統架構相關的工作。
+          </p>
+        </section>
+
+        <section class="panel" id="panel-achv" role="tabpanel" aria-labelledby="tab-achv" hidden>
+          <h2 class="serif">在校成就</h2>
+          <ul class="achv-list">
+            <li class="achv-item">
+              <span class="achv-year">2025</span>
+              <div>
+                <p class="achv-title">歷年成績：80，班排前五</p>
+                <p class="achv-title">考取Java相關證照，並取得不錯的成績</p>
+
+              </div>
+            </li>
+            <li class="achv-item">
+              <span class="achv-year">2024–2025</span>
+              <div>
+                <p class="achv-title">學期成績　系排名前 10%</p>
+                <p class="achv-desc">連續兩學期維持在系上前段，主修科目平均 75以上</p>
+              </div>
+            </li>
+          </ul>
+        </section>
+
+      </div>
+    </div>
+  </main>
+
+  <footer class="site-foot">
+    <div class="foot-grid">
+      <p class="foot-desc">
+        這是我的個人介紹頁面，記錄目前的學習方向與在校期間的重要成果，歡迎透過以下方式與我聯繫，交流課業、專題或工作機會相關的想法。
+      </p>
+      <div class="foot-contact">
+        <span class="foot-label">聯絡方式</span>
+        <a href="mailto:pinrui.lin@example.com">pinrui.lin@example.com</a>
+        <a href="tel:+886900000000">0900-000-000</a>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    const tabs = document.querySelectorAll('.tab-btn');
+    const panels = {
+      'tab-about': document.getElementById('panel-about'),
+      'tab-achv': document.getElementById('panel-achv')
+    };
+
+    tabs.forEach(btn => {
+      btn.addEventListener('click', () => {
+        tabs.forEach(b => b.setAttribute('aria-selected', 'false'));
+        Object.values(panels).forEach(p => { p.hidden = true; p.classList.remove('is-active'); });
+
+        btn.setAttribute('aria-selected', 'true');
+        const panel = panels[btn.id];
+        panel.hidden = false;
+        panel.classList.add('is-active');
+      });
+    });
+  </script>
+
+</body>
+</html>
