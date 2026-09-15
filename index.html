@@ -360,6 +360,116 @@
     .achv-item{ grid-template-columns: 1fr; gap: 4px; }
     .foot-grid{ flex-direction: column; }
   }
+
+  /* ---------- 活動報名表單 ---------- */
+  .reg-form{
+    max-width: 62ch;
+  }
+
+  .reg-fieldset{
+    border: 1px solid var(--line);
+    background: var(--card);
+    padding: 20px 22px 24px;
+    margin: 0 0 22px;
+  }
+
+  .reg-fieldset legend{
+    padding: 0 8px;
+    font-weight: 600;
+    color: var(--maroon);
+    font-size: 0.95rem;
+  }
+
+  .reg-field{
+    margin-bottom: 18px;
+  }
+
+  .reg-field:last-child{
+    margin-bottom: 0;
+  }
+
+  .reg-field label{
+    display:block;
+    font-size: 0.9rem;
+    font-weight: 500;
+    color: var(--ink);
+    margin-bottom: 6px;
+  }
+
+  .req-mark{
+    color: var(--maroon);
+    margin-left: 2px;
+  }
+
+  .reg-field input[type="text"],
+  .reg-field input[type="email"],
+  .reg-field input[type="tel"],
+  .reg-field select,
+  .reg-field textarea{
+    width: 100%;
+    font-family: inherit;
+    font-size: 0.95rem;
+    color: var(--ink);
+    background: var(--paper);
+    border: 1px solid var(--line);
+    padding: 9px 12px;
+  }
+
+  .reg-field textarea{
+    resize: vertical;
+    min-height: 90px;
+  }
+
+  .reg-radio-row{
+    display:flex;
+    flex-wrap: wrap;
+    gap: 18px;
+  }
+
+  .reg-radio-row .reg-radio-opt{
+    display:flex;
+    align-items:center;
+    gap: 6px;
+    font-size: 0.92rem;
+    font-weight: 400;
+    margin: 0;
+  }
+
+  .reg-radio-row input[type="radio"],
+  .reg-radio-row input[type="checkbox"]{
+    accent-color: var(--maroon);
+    width: 16px;
+    height: 16px;
+  }
+
+  .reg-hint{
+    font-size: 0.8rem;
+    color: var(--muted);
+    margin-top: 6px;
+  }
+
+  .reg-submit{
+    font-family: inherit;
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: var(--paper);
+    background: var(--maroon);
+    border: none;
+    padding: 12px 30px;
+    cursor: pointer;
+    transition: background .15s ease;
+  }
+
+  .reg-submit:hover{
+    background: #5E2222;
+  }
+
+  .reg-success{
+    margin-top: 16px;
+    font-size: 0.9rem;
+    color: var(--gold);
+    font-weight: 500;
+  }
 </style>
 </head>
 <body>
@@ -397,6 +507,7 @@
       <nav class="tabs" role="tablist" aria-label="頁面內容切換">
         <button class="tab-btn" role="tab" id="tab-about" aria-selected="true" aria-controls="panel-about">自我介紹</button>
         <button class="tab-btn" role="tab" id="tab-achv" aria-selected="false" aria-controls="panel-achv">在校成就</button>
+        <button class="tab-btn" role="tab" id="tab-form" aria-selected="false" aria-controls="panel-form">聯絡我</button>
       </nav>
     </div>
   </header>
@@ -406,12 +517,11 @@
 
       <div class="photo-block">
         <div class="photo-frame">
-
-         <img src="photo.JPG" alt="黃婷鈺的大頭照">
+          <img src="photo.jpg" alt="黃婷鈺的大頭照">
         </div>
         <div class="photo-caption">
-          <span>學號 B10707022</span>
-          <strong>資二甲</strong>
+          <span>學號 3B432045</span>
+          <strong>四資二甲</strong>
         </div>
       </div>
 
@@ -426,10 +536,10 @@
             <span class="trait-chip">喜歡動手做</span>
           </div>
           <p>
-            我是黃婷鈺，目前就讀資訊管理系二年級，對後端系統與資料結構特別感興趣，習慣把抽象的問題拆解成可以逐步驗證的小步驟。平常喜歡透過實作專案來學習新技術，也享受和同學一起除錯、互相檢視程式碼的過程。
+            我是林品睿，目前就讀資訊管理系二年級，對後端系統與資料結構特別感興趣，習慣把抽象的問題拆解成可以逐步驗證的小步驟。平常喜歡透過實作專案來學習新技術，也享受和同學一起除錯、互相檢視程式碼的過程。
           </p>
           <p>
-            課餘時間我會餐與UIUX的線上課程，學習相關技能；在暑假期間也會參加暑期職場體驗計畫，擔任企劃宣傳的職位，利用在校所學幫助企業宣傳，希望在畢業前累積足夠的實戰經驗，未來能投入後端工程或系統架構相關的工作。
+            課餘時間我會學習校外相關課程，利用所學精進相關技術；也固定安排時間自學演算法與系統設計，希望在畢業前累積足夠的實戰經驗，期望未來能投入後端工程或系統架構相關的工作。
           </p>
         </section>
 
@@ -439,19 +549,90 @@
             <li class="achv-item">
               <span class="achv-year">2025</span>
               <div>
-                <p class="achv-title">歷年成績：80，班排前五</p>
-                <p class="achv-title">考取Java相關證照，並取得不錯的成績</p>
-
+                <p class="achv-title">班排名前5%</p>
               </div>
             </li>
             <li class="achv-item">
-              <span class="achv-year">2024–2025</span>
+              <span class="achv-year">2025–2026</span>
               <div>
                 <p class="achv-title">學期成績　系排名前 10%</p>
-                <p class="achv-desc">連續兩學期維持在系上前段，主修科目平均 75以上</p>
+                <p class="achv-desc">連續兩學期維持在系上前段班，主修科目平均 80</p>
               </div>
             </li>
+            
           </ul>
+        </section>
+
+        <section class="panel" id="panel-form" role="tabpanel" aria-labelledby="tab-form" hidden>
+          <h2 class="serif">聯絡我</h2>
+          <p>歡迎透過以下表單與我聯繫，標示 <span class="req-mark">*</span> 為必填欄位。</p>
+
+          <form class="reg-form" id="event-reg-form">
+
+            <fieldset class="reg-fieldset">
+              <legend>基本資料</legend>
+
+              <div class="reg-field">
+                <label for="reg-name">姓名<span class="req-mark">*</span></label>
+                <input type="text" id="reg-name" name="name" autocomplete="name" required>
+              </div>
+
+              <div class="reg-field">
+                <label for="reg-email">電子郵件<span class="req-mark">*</span></label>
+                <input type="email" id="reg-email" name="email" autocomplete="email" required>
+              </div>
+
+              <div class="reg-field">
+                <label for="reg-phone">連絡電話<span class="req-mark">*</span></label>
+                <input type="tel" id="reg-phone" name="phone" autocomplete="tel" placeholder="0900-000-000" required>
+              </div>
+
+              <div class="reg-field">
+                <label id="reg-gender-label">性別<span class="req-mark">*</span></label>
+                <div class="reg-radio-row" role="radiogroup" aria-labelledby="reg-gender-label">
+                  <label class="reg-radio-opt"><input type="radio" name="gender" value="female" required> 女性</label>
+                  <label class="reg-radio-opt"><input type="radio" name="gender" value="male" required> 男性</label>
+                  <label class="reg-radio-opt"><input type="radio" name="gender" value="other" required> 其他 / 不透露</label>
+                </div>
+              </div>
+            </fieldset>
+
+            <fieldset class="reg-fieldset">
+              <legend>聯絡內容</legend>
+
+              <div class="reg-field">
+                <label for="reg-org">目前身份／單位</label>
+                <input type="text" id="reg-org" name="organization" autocomplete="organization" placeholder="例：資管系二年級學生">
+              </div>
+
+              <div class="reg-field">
+                <label for="reg-subject">聯絡事由</label>
+                <select id="reg-subject" name="subject">
+                  <option value="">請選擇聯絡事由</option>
+                  <option value="course">課業／專題交流</option>
+                  <option value="job">工作機會</option>
+                  <option value="other">其他</option>
+                </select>
+              </div>
+
+              <div class="reg-field">
+                <label id="reg-time-label">方便聯絡時段</label>
+                <div class="reg-radio-row" role="radiogroup" aria-labelledby="reg-time-label">
+                  <label class="reg-radio-opt"><input type="radio" name="contact_time" value="morning"> 上午</label>
+                  <label class="reg-radio-opt"><input type="radio" name="contact_time" value="afternoon"> 下午</label>
+                  <label class="reg-radio-opt"><input type="radio" name="contact_time" value="evening"> 晚上</label>
+                </div>
+              </div>
+
+              <div class="reg-field">
+                <label for="reg-note">想說的話</label>
+                <textarea id="reg-note" name="message" placeholder="請簡述您想討論或詢問的內容"></textarea>
+              </div>
+            </fieldset>
+
+            <button type="submit" class="reg-submit">送出訊息</button>
+            <p class="reg-success" id="reg-success-msg" hidden role="status">已收到您的訊息，謝謝聯絡！</p>
+          </form>
         </section>
 
       </div>
@@ -465,8 +646,7 @@
       </p>
       <div class="foot-contact">
         <span class="foot-label">聯絡方式</span>
-        <a href="mailto:pinrui.lin@example.com">pinrui.lin@example.com</a>
-        <a href="tel:+886900000000">0900-000-000</a>
+        <a href="3b432045@gm.student.ncut.edu.tw">3b432045@gm.student.ncut.edu.tw</a>
       </div>
     </div>
   </footer>
@@ -475,7 +655,8 @@
     const tabs = document.querySelectorAll('.tab-btn');
     const panels = {
       'tab-about': document.getElementById('panel-about'),
-      'tab-achv': document.getElementById('panel-achv')
+      'tab-achv': document.getElementById('panel-achv'),
+      'tab-form': document.getElementById('panel-form')
     };
 
     tabs.forEach(btn => {
@@ -488,6 +669,14 @@
         panel.hidden = false;
         panel.classList.add('is-active');
       });
+    });
+
+    const regForm = document.getElementById('event-reg-form');
+    const regSuccess = document.getElementById('reg-success-msg');
+    regForm.addEventListener('submit', (e) => {
+      e.preventDefault();
+      regSuccess.hidden = false;
+      regForm.reset();
     });
   </script>
 
