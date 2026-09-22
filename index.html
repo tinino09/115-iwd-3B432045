@@ -50,7 +50,7 @@
   header.site-head{
     background: var(--paper);
     border-bottom: 1px solid var(--line);
-    padding: 40px clamp(20px, 6vw, 72px) 0;
+    padding: 0 clamp(20px, 6vw, 72px) 0;
   }
 
   .hero-deco{
@@ -123,8 +123,6 @@
 
   .head-row{
     display:flex;
-    justify-content: space-between;
-    align-items: flex-end;
     flex-wrap: wrap;
     gap: 24px;
     padding-bottom: 28px;
@@ -147,7 +145,15 @@
 
   nav.tabs{
     display:flex;
+    justify-content: center;
     gap: clamp(20px, 3vw, 40px);
+  }
+
+  nav.tabs.top-nav{
+    width: 100%;
+    padding: 18px 0;
+    border-bottom: 1px solid var(--line);
+    margin-bottom: 8px;
   }
 
   .tab-btn{
@@ -169,6 +175,8 @@
   .tab-btn[aria-selected="true"]{
     color: var(--ink);
     border-bottom-color: var(--gold);
+    cursor: default;
+    pointer-events: none;
   }
 
   /* ---------- 主體 ---------- */
@@ -245,6 +253,13 @@
     font-size: 1.5rem;
     font-weight: 600;
     margin: 0 0 20px;
+  }
+
+  .panel h3{
+    font-size: 1.15rem;
+    font-weight: 600;
+    margin: 8px 0 16px;
+    color: var(--maroon);
   }
 
   .panel p{
@@ -475,6 +490,11 @@
 <body>
 
   <header class="site-head">
+    <nav class="tabs top-nav" role="tablist" aria-label="頁面內容切換">
+      <button class="tab-btn" role="tab" id="tab-home" aria-selected="true" aria-controls="panel-home">首頁</button>
+      <button class="tab-btn" role="tab" id="tab-about" aria-selected="false" aria-controls="panel-about">個人介紹</button>
+      <button class="tab-btn" role="tab" id="tab-form" aria-selected="false" aria-controls="panel-form">聯絡我</button>
+    </nav>
     <div class="hero-deco" aria-hidden="true">
       <svg class="cat-scene" viewBox="0 0 150 96" xmlns="http://www.w3.org/2000/svg">
         <g class="yarn-rig">
@@ -504,11 +524,6 @@
         <h1 class="head-name serif">黃婷鈺</h1>
         <p class="head-role">國立勤益科技大學．資訊管理系二年級</p>
       </div>
-      <nav class="tabs" role="tablist" aria-label="頁面內容切換">
-        <button class="tab-btn" role="tab" id="tab-about" aria-selected="true" aria-controls="panel-about">自我介紹</button>
-        <button class="tab-btn" role="tab" id="tab-achv" aria-selected="false" aria-controls="panel-achv">在校成就</button>
-        <button class="tab-btn" role="tab" id="tab-form" aria-selected="false" aria-controls="panel-form">聯絡我</button>
-      </nav>
     </div>
   </header>
 
@@ -527,8 +542,24 @@
 
       <div class="content-panel">
 
-        <section class="panel is-active" id="panel-about" role="tabpanel" aria-labelledby="tab-about">
-          <h2 class="serif">關於我</h2>
+        <section class="panel is-active" id="panel-home" role="tabpanel" aria-labelledby="tab-home">
+          <h2 class="serif">首頁</h2>
+          <div class="trait-row">
+            <span class="trait-chip">邏輯思考</span>
+            <span class="trait-chip">團隊合作</span>
+            <span class="trait-chip">持續學習</span>
+            <span class="trait-chip">喜歡動手做</span>
+          </div>
+          <p>
+            歡迎來到我的個人網站！我是黃婷鈺，目前就讀國立勤益科技大學資訊管理系二年級。這個網站記錄了我的學習方向、在校期間的重要成果，也歡迎透過「聯絡我」分頁與我交流課業、專題或工作機會相關的想法。
+          </p>
+          <p>
+            點選上方的「個人介紹」可以看到更完整的自我介紹與在校成就；點選「聯絡我」則可以直接填寫表單與我聯絡。
+          </p>
+        </section>
+
+        <section class="panel" id="panel-about" role="tabpanel" aria-labelledby="tab-about" hidden>
+          <h2 class="serif">個人介紹</h2>
           <div class="trait-row">
             <span class="trait-chip">邏輯思考</span>
             <span class="trait-chip">團隊合作</span>
@@ -541,10 +572,8 @@
           <p>
             課餘時間我會學習校外相關課程，利用所學精進相關技術；也固定安排時間自學演算法與系統設計，希望在畢業前累積足夠的實戰經驗，期望未來能投入後端工程或系統架構相關的工作。
           </p>
-        </section>
 
-        <section class="panel" id="panel-achv" role="tabpanel" aria-labelledby="tab-achv" hidden>
-          <h2 class="serif">在校成就</h2>
+          <h3 class="serif">在校成就</h3>
           <ul class="achv-list">
             <li class="achv-item">
               <span class="achv-year">2025</span>
@@ -654,13 +683,16 @@
   <script>
     const tabs = document.querySelectorAll('.tab-btn');
     const panels = {
+      'tab-home': document.getElementById('panel-home'),
       'tab-about': document.getElementById('panel-about'),
-      'tab-achv': document.getElementById('panel-achv'),
       'tab-form': document.getElementById('panel-form')
     };
 
     tabs.forEach(btn => {
       btn.addEventListener('click', () => {
+        // 除錯：目前已選取（在該分頁上）的按鈕不可再被點選
+        if (btn.getAttribute('aria-selected') === 'true') return;
+
         tabs.forEach(b => b.setAttribute('aria-selected', 'false'));
         Object.values(panels).forEach(p => { p.hidden = true; p.classList.remove('is-active'); });
 
