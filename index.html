@@ -8,14 +8,14 @@
 <link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,400;8..60,600;8..60,700&family=Noto+Serif+TC:wght@500;700&family=Work+Sans:wght@400;500;600&family=Noto+Sans+TC:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
   :root{
-    --ink: #1F2933;
-    --paper: #FFFF99;
-    --paper-deep: #E4E1D5;
-    --card: #FAF9F4;
-    --gold: #B3862C;
-    --maroon: #7A2E2E;
-    --line: #D8D4C6;
-    --muted: #6B675C;
+    --ink: #534847;
+    --paper: #FADAD8;
+    --paper-deep: #F0C4C1;
+    --card: #FFF7F5;
+    --gold: #D09E88;
+    --maroon: #534847;
+    --line: rgba(83,72,71,0.18);
+    --muted: #9B8281;
   }
 
   *{ box-sizing: border-box; }
@@ -134,6 +134,7 @@
     line-height: 1.15;
     margin: 0 0 8px;
     letter-spacing: 0.01em;
+    color: var(--gold);
   }
 
   .head-role{
@@ -207,7 +208,7 @@
     width: 200px;             /* 固定寬度 */
     height: 200px;            /* 固定高度，確保永遠是正方形 */
     border-radius: 50%;       /* 正方形加上 50% 會完美變成正圓 */
-    background: #FFFF99;
+    background: var(--gold);
     border: 1px solid var(--line);
     display: flex;
     align-items: center;
@@ -256,6 +257,7 @@
     font-size: 1.5rem;
     font-weight: 600;
     margin: 0 0 20px;
+    color: var(--gold);
   }
 
   .panel h3{
@@ -270,7 +272,7 @@
     line-height: 1.85;
     max-width: 62ch;
     margin: 0 0 18px;
-    color: #33393f;
+    color: var(--ink);
   }
 
   .trait-row{
@@ -326,8 +328,8 @@
 
   /* ---------- 底部 ---------- */
   footer.site-foot{
-    background: #C6A57B;
-    color: #2A2119;
+    background: var(--ink);
+    color: var(--paper);
     padding: 40px clamp(20px, 6vw, 72px);
   }
 
@@ -345,7 +347,7 @@
     max-width: 46ch;
     font-size: 0.92rem;
     line-height: 1.7;
-    color: #45392C;
+    color: var(--paper);
     margin:0;
   }
 
@@ -358,15 +360,15 @@
 
   .foot-contact a{
     text-decoration: none;
-    border-bottom: 1px solid rgba(42,33,25,0.35);
+    border-bottom: 1px solid rgba(250,218,216,0.4);
   }
 
   .foot-contact a:hover{
-    border-bottom-color: var(--maroon);
+    border-bottom-color: var(--gold);
   }
 
   .foot-label{
-    color: #5C4B3A;
+    color: var(--gold);
     font-size: 0.78rem;
     letter-spacing: 0.02em;
     margin-bottom: 2px;
@@ -467,6 +469,17 @@
     margin-top: 6px;
   }
 
+  .reg-field input.is-invalid{
+    border-color: #C0392B;
+  }
+
+  .reg-error{
+    color: #C0392B;
+    font-size: 0.8rem;
+    margin: 6px 0 0;
+    font-weight: 500;
+  }
+
   .reg-submit{
     font-family: inherit;
     font-size: 0.95rem;
@@ -479,8 +492,14 @@
     transition: background .15s ease;
   }
 
-  .reg-submit:hover{
-    background: #5E2222;
+  .reg-submit:hover:not(:disabled){
+    background: var(--gold);
+  }
+
+  .reg-submit:disabled{
+    background: #8A8A8A;
+    color: #F0F0F0;
+    cursor: not-allowed;
   }
 
   .reg-success{
@@ -612,7 +631,8 @@
 
               <div class="reg-field">
                 <label for="reg-email">電子郵件<span class="req-mark">*</span></label>
-                <input type="email" id="reg-email" name="email" autocomplete="email" required>
+                <input type="email" id="reg-email" name="email" autocomplete="email" aria-describedby="reg-email-error" required>
+                <p class="reg-error" id="reg-email-error" role="alert" hidden>請輸入正確的電子郵件格式，例如 name@example.com</p>
               </div>
 
               <div class="reg-field">
@@ -709,10 +729,34 @@
 
     const regForm = document.getElementById('event-reg-form');
     const regSuccess = document.getElementById('reg-success-msg');
+    const regSubmitBtn = regForm.querySelector('.reg-submit');
+
+    const regEmail = document.getElementById('reg-email');
+    const regEmailError = document.getElementById('reg-email-error');
+
+    function validateEmail(){
+      const isEmpty = regEmail.value.trim() === '';
+      const isValid = regEmail.checkValidity();
+      if (!isEmpty && !isValid) {
+        regEmailError.hidden = false;
+        regEmail.classList.add('is-invalid');
+      } else {
+        regEmailError.hidden = true;
+        regEmail.classList.remove('is-invalid');
+      }
+    }
+
+    regEmail.addEventListener('input', validateEmail);
+    regEmail.addEventListener('blur', validateEmail);
+
     regForm.addEventListener('submit', (e) => {
       e.preventDefault();
       regSuccess.hidden = false;
+      regSubmitBtn.textContent = '已送出';
+      regSubmitBtn.disabled = true;
       regForm.reset();
+      regEmailError.hidden = true;
+      regEmail.classList.remove('is-invalid');
     });
   </script>
 
